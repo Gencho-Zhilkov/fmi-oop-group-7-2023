@@ -56,7 +56,8 @@ bool isValid(const int sudoku[9][9]) {
 	return true;
 }
 
-bool canUse(int sudoku[9][9], size_t row, size_t col, int val) {
+// Check if we can use value `val` at position `row`, `col`
+bool canUse(const int sudoku[9][9], const size_t row, const size_t col, const int val) {
 	// Check row `row` and column `col` for `val`
 	for (size_t n = 0; n < 9; n++) {
 		if (sudoku[row][n] == val || sudoku[n][col] == val) {
@@ -76,7 +77,8 @@ bool canUse(int sudoku[9][9], size_t row, size_t col, int val) {
 	return true;
 }
 
-bool solve(int sudoku[9][9], size_t cell) {
+// Try finding a solution recursively starting from `cell`
+bool solve(int sudoku[9][9], const size_t cell) {
 	assert (isValid(sudoku));
 
 	if (cell == 9 * 9) {
@@ -109,13 +111,13 @@ bool solve(int sudoku[9][9], size_t cell) {
 	return false;
 }
 
+// Try solving the sudoku
 void solve(int sudoku[9][9]) {
 	bool solved = solve(sudoku, 0);
 	if (!solved) {
 		throw std::runtime_error("No solution found!");
 	}
 }
-
 
 // Fill sudoku from values `line`. Empty cells are denoted by `.` or `0`.
 void fillFromString(int sudoku[9][9], const char *line) {
@@ -143,7 +145,7 @@ void fillFromString(int sudoku[9][9], const char *line) {
 }
 
 // Pretty-print a sudoku on `stdout`
-void print(int sudoku[9][9]) {
+void print(const int sudoku[9][9]) {
 	for (size_t i = 0; i < 9; i++) {
 		if (i == 3 || i == 6) {
 			std::cout << " ------+-------+------" << std::endl;
