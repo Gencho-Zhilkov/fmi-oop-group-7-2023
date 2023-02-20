@@ -51,8 +51,8 @@ private:
 		return true;
 	}
 
-	// Check if we can use value `val` at position `row`, `col`
-	bool canUse(const size_t row, const size_t col, const int val) const {
+	// Can we put the value `val` at position `row`, `col`
+	bool canPut(const size_t row, const size_t col, const int val) const {
 		// Check row `row` and column `col` for `val`
 		for (size_t n = 0; n < 9; n++) {
 			if (sudoku[row][n] == val || sudoku[n][col] == val) {
@@ -82,20 +82,19 @@ private:
 		}
 
 		const size_t i = cell / 9, j = cell % 9;
-		const int val = sudoku[i][j];
-		if (val != 0) {
+		if (sudoku[i][j] != 0) {
 			// Cell already has a value: Move on to next one...
 			return solve(cell + 1);
 		}
 
 		// Empty cell: Try out assigning all possible values
 		// and see if one leads to a valid solution.
-		for (int v = 1; v <= 9; v++) {
-			if (!canUse(i, j, v)) {
+		for (int val = 1; val <= 9; val++) {
+			if (!canPut(i, j, val)) {
 				continue;
 			}
 
-			sudoku[i][j] = v;
+			sudoku[i][j] = val;
 			if (solve(cell + 1)) {
 				return true;
 			}
