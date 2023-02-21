@@ -90,13 +90,11 @@ private:
 		// Empty cell: Try out assigning all possible values
 		// and see if one leads to a valid solution.
 		for (int val = 1; val <= 9; val++) {
-			if (!canPut(i, j, val)) {
-				continue;
-			}
-
-			sudoku[i][j] = val;
-			if (solve(cell + 1)) {
-				return true;
+			if (canPut(i, j, val)) {
+				sudoku[i][j] = val;
+				if (solve(cell + 1)) {
+					return true;
+				}
 			}
 		}
 

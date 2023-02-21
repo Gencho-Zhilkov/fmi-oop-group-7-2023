@@ -2,9 +2,11 @@
 
 ## Връзки с обществеността:
 
+[Обратна връзка за упражненията по УП](https://forms.gle/TvCTZc6qkyhrEVt6A)
+
 [Post-Mortem Изпит по УП](https://docs.google.com/presentation/d/1TjE-edun2iemV-n1MC0MZSFDIpk0VbolcNIa-ATt8xc/edit?usp=sharing)
 
-[Обратна връзка за упражненията по УП](https://forms.gle/TvCTZc6qkyhrEVt6A)
+[Судоку: УП _vs._ ООП](https://docs.google.com/presentation/d/1nSPxyPwwfPVcrTbgFtQwmKU4qSN6tiZLGB0RmKldmC8/edit#slide=id.g20f51b05dee_0_16)
 
 
 ### Първи стъпки в ООП:
