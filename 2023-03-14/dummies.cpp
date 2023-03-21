@@ -63,9 +63,7 @@ public:
 	~Dummy2() = default;
 
 	// Add an additional custom constructors
-	Dummy2(const int v1, const int v2) {
-		d1 = {v1};
-		d2 = {v2};
+	Dummy2(const int v1, const int v2): d1{v1}, d2{v2} {
 	}
 };
 
@@ -75,6 +73,6 @@ Dummy foo(const int v) {
 
 int main() {
 	// Insert your test code here, then compile and run ...
-
-	return 0;
+    Dummy2 dd{5, 7};
+    return 0;
 }
