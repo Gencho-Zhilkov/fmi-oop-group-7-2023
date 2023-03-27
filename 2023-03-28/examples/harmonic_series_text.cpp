@@ -10,7 +10,7 @@ int main() {
 	} while (n <= 0);
 
 	// Отваряме файла за писане
-	std::ofstream fout("harmonic_series.csv");
+	std::ofstream fout("harmonic_series.txt");
 	if (!fout) {
 		std::cerr << "Could not open file for writing!" << std::endl;
 		return 1;
@@ -22,7 +22,7 @@ int main() {
 	double h = 0;
 	for (int i = 1; i <= n; i++) {
 		h += 1. / i;
-		fout << i << ',' << h << std::endl;
+		fout << h << std::endl;
 	}
 
 	return 0;

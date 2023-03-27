@@ -58,7 +58,10 @@ Complex Complex::conjugate() const {
 
 ### Файлове и потоци:
 
-_**Въпрос**_: Каква е разликата между файлове и потоци?
+_**Въпроси**_:
+1. Каква е разликата между _потоци_ и _файлове_?
+2. Каква е разликата между _бинарен_ (_двоичен_) и _текстов_ файл?
+3. Какви са предимствата и недостатъците на _бинарните_ спрямо _текстовите_ файлове?
 
 #### Необходими header файлове:
   - [`<iomanip>`](https://cplusplus.com/reference/iomanip/): Манипулатори за форматиране на вход/изход потоци
@@ -80,6 +83,10 @@ char currentWord[MAX_LEN], longestWord[MAX_LEN];
 
 // Отваряме файла за четене
 std::ifstream fin("common_words.txt");
+if (!fin) {
+    std::cerr << "Could not open file for reading!" << std::endl;
+    return 1;
+}
 
 // Четем ред по ред, докато не стигнем до края
 while (fin.getline(currentWord, MAX_LEN)) {
@@ -97,6 +104,10 @@ std::string currentWord, longestWord;
 
 // Отваряме файла за четене
 std::ifstream fin("common_words.txt");
+if (!fin) {
+    std::cerr << "Could not open file for reading!" << std::endl;
+    return 1;
+}
 
 // Четем ред по ред, докато не стигнем до края
 while (std::getline(fin, currentWord)) {
@@ -111,19 +122,60 @@ std::cout << "Longest word = '" << longestWord << std::endl;
 _**Пример 2: Записване в текстов файл**_: Искаме да запишем, с точност 3 знака след десетичната запетая, първите `n` стойности на [хармоничната редица](https://en.wikipedia.org/wiki/Harmonic_series_(mathematics)): $$h(n) = \sum_{i=1}^n {1 \over i}$$
 ```cpp
 // Отваряме файла за писане
-std::ofstream fout("harmonic_series.csv");
+std::ofstream fout("harmonic_series.txt");
+if (!fout) {
+    std::cerr << "Could not open file for writing!" << std::endl;
+    return 1;
+}
 
 // Слагаме форматирането на 3 знака след десетичната запетая
 fout << std::fixed << std::setprecision(3);
 
 double h = 0;
 for (int i = 1; i <= n; i++) {
-	h += 1. / i;
-	fout << i << ',' << h << std::endl;
+    h += 1. / i;
+    fout << h << std::endl;
 }
 ```
 
-### Бинарни (двоични) файлове: TODO!!!
+### Бинарни (двоични) файлове:
+
+За разлика от текстовите файлове, съдържанието на бинарните файлове **не** се интерпретира по специален начин, а се разглежда просто като поредица от байтове. Обикновено използваме бинарни файлове, когато работим със записи с еднаква големина напр. числа (`int`, `double`, ...), масиви от символи с фиксирана дължина (`char [10]`) или структури.
+
+_**Пример 1: Четене от бинарен файл**_: Имаме файла `examples/numbers.bin`, който съдържа списък от цели числа. Искаме да намерим и отпечатаме средното им аритметично.
+```cpp
+    std::ifstream fin("ints.bin", std::ios::in | std::ios::binary);
+    if (!fin) {
+        std::cerr << "Could not open file for reading!" << std::endl;
+        return 1;
+    }
+
+    int sum = 0, val;
+    size_t count = 0;
+    while (fin.read((char *)&val, sizeof(val))) {
+        sum += val;
+        count ++;
+    }
+
+    std::cerr << "Count = " << count << std::endl;
+    std::cout << "Average = " << (double)sum / count << std::endl;
+```
+
+_**Пример 2: Записване в текстов файл**_: Искаме отново да запишем първите `n` стойности на [хармоничната редица](https://en.wikipedia.org/wiki/Harmonic_series_(mathematics)): $$h(n) = \sum_{i=1}^n {1 \over i}$$
+```cpp
+std::ofstream fout("harmonic_series.bin", std::ios::out | std::ios::binary);
+if (!fout) {
+    std::cerr << "Could not open file for writing!" << std::endl;
+    return 1;
+}
+
+double h = 0;
+for (int i = 1; i <= n; i++) {
+    h += 1. / i;
+    fout.write((char *)&h, sizeof(h));
+}
+```
+_**Въпрос**_: Има ли смисъл и възможно ли е вообвще да фиксираме броя на значещите цифри в този случай?
 
 
 ### Читанка:
