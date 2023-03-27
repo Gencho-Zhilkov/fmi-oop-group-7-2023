@@ -161,7 +161,7 @@ _**Пример 1: Четене от бинарен файл**_: Имаме фа
     std::cout << "Average = " << (double)sum / count << std::endl;
 ```
 
-_**Пример 2: Записване в бинарен файл**_: Искаме отново да запишем първите `n` стойности на [хармоничната редица](https://en.wikipedia.org/wiki/Harmonic_series_(mathematics)): $$h(n) = \sum_{i=1}^n {1 \over i}$$
+_**Пример 2: Записване в бинарен файл**_: Искаме отново да запишем първите `n` стойности на [хармоничната редица](https://en.wikipedia.org/wiki/Harmonic_series_(mathematics)), но този път в бинарен формат.
 ```cpp
 std::ofstream fout("harmonic_series.bin", std::ios::out | std::ios::binary);
 if (!fout) {
