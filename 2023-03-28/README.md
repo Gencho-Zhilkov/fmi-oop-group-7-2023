@@ -10,10 +10,10 @@
 3. Деклариране на полета (член-данни) и методи (член-функции).
 
 4. Канонично представяне (Голяма 4-ка).
-  - Конструктори: `IntVector()`, `Rational(int num=0, int denom=1)`, ...
-  - _Copy_ конструктор: `Rational(const Rational& that)`
-  - Оператор за присвояване: `Rational& operator =(const Rational& that)`
-  - Деструктор: `~Rational()`
+  - Конструктори: `Complex(double real=0, double imag=0)`, ...
+  - _Copy_ конструктор: `Complex(const Complex& that)`
+  - Оператор за присвояване: `Complex& operator =(const Complex& that)`
+  - Деструктор: `~Complex()`
 
 5. Дефиниция на методи (член-функции) вън от класа:
 ```cpp
