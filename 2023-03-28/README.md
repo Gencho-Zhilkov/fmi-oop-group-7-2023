@@ -108,7 +108,7 @@ while (std::getline(fin, currentWord)) {
 std::cout << "Longest word = '" << longestWord << std::endl;
 ```
 
-_**Пример 2: Записване в текстов файл**_: Искаме да запишем първите `n` стойности на [хармоничната редица](https://en.wikipedia.org/wiki/Harmonic_series_(mathematics)): $h(n) = \sum_{i=1}^n 1 \over i$, с точност 3 знака след десетичната запетая.
+_**Пример 2: Записване в текстов файл**_: Искаме да запишем, с точност 3 знака след десетичната запетая, първите `n` стойности на [хармоничната редица](https://en.wikipedia.org/wiki/Harmonic_series_(mathematics)): $$h(n) = \sum_{i=1}^n {1 \over i}$$
 ```cpp
 // Отваряме файла за писане
 std::ofstream fout("harmonic_series.csv");
