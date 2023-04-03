@@ -72,23 +72,6 @@ Book *myBooks[10];
 Book *yourBooks[10] = myBooks;
 ```
 
-```cpp
-Book *myBooks[10];
-Book *yourBooks[10];
-
-for(size_t i = 0; i < 10; i++) {
-    yourBooks[i] = myBooks[i];
-}
-```
-
-```cpp
-Book *myBooks[10];
-Book *yourBooks[10];
-
-for(size_t i = 0; i < 10; i++) {
-    yourBooks[i] = new Book{*myBooks[i]};
-}
-```
 
 1. _"Плитко"_ копиране: Копираме първия _указател_ във втория. Извиква се _copy конструктора_ на типа `Т*`. Накрая и двата указателя сочат към _**един и същ**_ обект (памет). Ако имаме два масива от указатели, това се случва за всеки от елементите на масивите.
 
