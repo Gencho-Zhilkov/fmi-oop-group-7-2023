@@ -18,14 +18,22 @@ struct Book {
 
 	// Конструктор, който прочита (десериализира) книга от входен поток
 	Book(std::istream& in) {
-		// TODO: Имплементирайте метода
+		in.read((char *)&serialNumber, sizeof(serialNumber));
+		size_t len;
+		in.read((char *)&len, sizeof(len));
+		title = new char[len + 1];
+		in.read(title, len);
+		title[len] = '\0';
 	}
 
 	// TODO: Довършете каноничното представяне на класа `Book`
 
 	// Метод, който записва (сериализира) книга на изходен поток
 	void save(std::ostream& out) const {
-		// TODO: Имплементирайте метода
+		f.write((char *)&serialNumber, sizeof(serialNumber));
+		const size_t len = strlen(title);
+		f.write((char *)&len, sizeof(len));
+		f.write(title, len);
 	}
 };
 
