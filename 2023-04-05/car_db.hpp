@@ -4,9 +4,11 @@
 #include <iostream>
 #include <fstream>
 #include <stdexcept>
-#include <vector>
+// #include <vector>
 
 #include "car.hpp"
+#include "car_vector.hpp"
+
 
 /* TODO:
 Довършете каноничното представяне на класа `CarDB`.
@@ -76,7 +78,8 @@ public:
 			throw std::invalid_argument("Could not open file for reading!");
 		}
 
-		std::vector<Car> cars;
+		// std::vector<Car> cars;
+		CarVector cars;
 		bool found = false;
 		Car temp;
 		while (fin >> temp) {
