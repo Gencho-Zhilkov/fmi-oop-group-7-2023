@@ -12,11 +12,15 @@ int main() {
 	};
 
 	// Отворете файла `my_books.bin` за писане в бинарен формат
-	// std::ofstream fout = ...
+	std::ofstream fout("my_books.bin", std::ios::out | std::ios::binary);
+	if (!fout) {
+		std::cerr << "Could not open file for writing!" << std::endl;
+		return 1;
+	}
 
 	for (size_t i = 0; i < 5; i++) {
 		// Запишете `myBooks[i]` във файла
-		// ...
+		myBooks[i].save(fout);
 	}
 
 	return 0;
