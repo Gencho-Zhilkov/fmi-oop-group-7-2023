@@ -6,38 +6,38 @@
 
 1. Искаме да напишем функция `max`, която приема два аргумента и връща по-големия от двата.
 
- _**Вариант 1**_ пишем по една функция за всеки възможен тип и да използваме _function overloading_ (претоварване на функции):
- ```cpp
- int max(const int a, const int b) {
- 	return a >= b ? a : b;
- }
+	_**Вариант 1**_ пишем по една функция за всеки възможен тип и да използваме _function overloading_ (претоварване на функции):
+	```cpp
+	int max(const int a, const int b) {
+		return a >= b ? a : b;
+	}
 
- long max(const long a, const long b) {
- 	return a >= b ? a : b;
- }
+	long max(const long a, const long b) {
+		return a >= b ? a : b;
+	}
 
- float max(const float a, const float b) {
- 	return a >= b ? a : b;
- }
+	float max(const float a, const float b) {
+		return a >= b ? a : b;
+	}
 
- double max(const double a, const double b) {
- 	return a >= b ? a : b;
- }
+	double max(const double a, const double b) {
+		return a >= b ? a : b;
+	}
 
- // ...
- ```
+	// ...
+	```
 
- _**Въпрос**_: Какви са проблемите на този подход?
+ 	_**Въпрос**_: Какви са проблемите на този подход?
 
- _**Вариант 2**_: използваме шаблонна функция (_template function_):
- ```cpp
- template <typename T>
- const T& max(const T& a, const T& b) {
-	return a >= b ? a : b;
- }
- ```
+ 	_**Вариант 2**_: използваме шаблонна функция (_template function_):
+	```cpp
+	template <typename T>
+	const T& max(const T& a, const T& b) {
+		return a >= b ? a : b;
+	}
+	```
 
- _**Въпрос**_: Какво ще се случи ако извикаме функцията с аргументи от тип, за който не е дефиниран оператора `>=`, напр. комплексни числа?
+ 	_**Въпрос**_: Какво ще се случи ако извикаме функцията с аргументи от тип, за който не е дефиниран оператора `>=`, напр. комплексни числа?
 
 2. Искаме да можем да дефинираме контейнери (колекции), чийто елементи да бъдат от произволен тип, напр. `std::vector`, `std::list`, `std::map`, `std::unordered_map`, ...
 
@@ -45,39 +45,39 @@
 ### Примери:
 
 1. Функция `sum`, намираща сбора на елементите в даден масив:
- ```cpp
- template <typename T>
- T sum(const T* const array, const size_t size) {
-	T res{};
+	```cpp
+	template <typename T>
+	T sum(const T* const array, const size_t size) {
+		T res{};
 
-    for (size_t i = 0; i < size; i++) {
-        res += array[i];
-    }
+		for (size_t i = 0; i < size; i++) {
+			res += array[i];
+		}
 
-    return res;
- }
- ```
+		return res;
+	}
+	```
 
- _**Въпрос**_: Можем ли да използваме `const T&` за тип на резултата вместо `Т`?
+ 	_**Въпрос**_: Можем ли да използваме за тип на резултата `const T&` вместо `Т` тук?
 
 
 2. `Vector<T>`: подобно на класа `IntVector`, искаме да създадем масив с променлива, автоматично нарастваща дължина, но този път искаме елементите да могат да бъдат oт всякакъв тип, не само `int`!
-```cpp
-template <typename T>
-class Vector {
-private:
-	size_t used;
-	size_t capacity;
-	T *array;
+	```cpp
+	template <typename T>
+	class Vector {
+	private:
+		size_t used;
+		size_t capacity;
+		T *array;
 
-	// ...
-};
-```
+		// ...
+	};
+	```
 
 
 ### Специалиализация:
 
-Понякога, често с оптимизационна цел, има смисъл да имаме специализирана имплементация на даден шаблон за определен тип/клас. Например, можем да имплементираме `vector<bool>` като масив от _битове_, вместо от булеви стойности (които заемат по един **байт** всяка) и по този начин да намалим значително необходимата памет!
+Понякога, често с оптимизационна цел, искаме да имаме специализирана имплементация на даден шаблон за определен тип/клас. Например, бихме могли да имплементираме `Vector<bool>` като масив от _битове_, вместо от булеви стойности (които заемат по един **байт** всяка) и по този начин да намалим значително необходимата памет.
 
 ```cpp
 template <>
