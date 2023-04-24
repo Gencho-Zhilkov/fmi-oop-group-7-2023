@@ -120,7 +120,7 @@ private:
 	template <typename T>
 	class SList {
 	private:
-		SNode *head_;
+		SNode<T> *head_;
 
 		// ...
 	};
