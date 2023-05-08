@@ -1,4 +1,4 @@
-# Упражнение 12
+# Упражнение 12 (_бонус_)
 
 <div align="center">
 	<img src="https://upload.wikimedia.org/wikipedia/commons/a/a7/Chess_board_blank.svg" height="384px" />
