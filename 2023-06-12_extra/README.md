@@ -15,12 +15,12 @@ private:
 	bool b;
 };
 
-class C: public B {
+class C: public A {
 private:
 	char *c;
 };
 
-class D: public A, B {
+class D: public B, public C {
 private:
 	double d;
 };

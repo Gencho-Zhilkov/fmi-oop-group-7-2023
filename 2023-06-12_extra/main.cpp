@@ -20,7 +20,7 @@ public:
 	// TODO: your code here!
 };
 
-class C: public B {
+class C: public A {
 private:
 	char *c;
 
@@ -28,7 +28,7 @@ public:
 	// TODO: your code here!
 };
 
-class D: public A, B {
+class D: public B, public C {
 private:
 	double d;
 
@@ -57,5 +57,3 @@ int main() {
 
 	return 0;
 }
-
-
